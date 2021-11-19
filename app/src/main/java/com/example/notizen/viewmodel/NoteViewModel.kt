@@ -19,9 +19,9 @@ class NoteViewModel(
         }
     }
 
-    fun updateNote(note: Note) {
+    fun editNote(note: Note) {
         viewModelScope.launch(Dispatchers.IO) {
-            noteRepo.updateNote(note)
+            noteRepo.editNote(note)
         }
     }
 

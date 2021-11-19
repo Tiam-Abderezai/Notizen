@@ -6,18 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
+import com.example.notizen.data.NoteRepository
 import com.example.notizen.databinding.FragmentDetailBinding
-import com.example.notizen.databinding.FragmentLoginBinding
+import com.example.notizen.viewmodel.NoteViewModel
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
+    private val args by navArgs<DetailFragmentArgs>()
     private val TAG = "DetailFragment"
 
-    //    private val viewModel: RecipeViewModel by viewModels {
-//        RecipeViewModel.Factory(RecipeRepository(requireActivity().application))
-//    }
+        private val viewModel: NoteViewModel by viewModels {
+        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -26,8 +30,11 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         binding.apply {
+            tvTitle.text = args.note.title
+            tvDescription.text = args.note.description
             btnEdit.setOnClickListener {
-                findNavController().navigate(R.id.action_detailFragment_to_editFragment)
+                val action = DetailFragmentDirections.actionDetailFragmentToEditFragment(args.note)
+                findNavController().navigate(action)
             }
         }
         Log.d(TAG, "onCreateView: ")

@@ -13,10 +13,10 @@ import com.example.notizen.data.NoteRepository
 import com.example.notizen.data.model.Note
 import com.example.notizen.databinding.FragmentComposeBinding
 import com.example.notizen.viewmodel.NoteViewModel
-import timber.log.Timber
 
 class ComposeFragment : Fragment() {
     private lateinit var binding: FragmentComposeBinding
+    private val TAG = "ComposeFragment"
     private val viewModel: NoteViewModel by viewModels {
         NoteViewModel.Factory(NoteRepository(requireActivity().application))
     }
@@ -33,7 +33,7 @@ class ComposeFragment : Fragment() {
                 findNavController().navigate(R.id.action_composeFragment_to_listFragment)
             }
         }
-        Timber.d("onCreateView: ")
+        Log.d(TAG, "onCreateView: ")
         return binding.root
     }
 }

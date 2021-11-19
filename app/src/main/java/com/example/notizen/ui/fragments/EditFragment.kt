@@ -4,26 +4,23 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
-//import com.example.notizen.data.model.Recipe
-//import com.example.notizen.data.repo.RecipeRepository
+import com.example.notizen.data.NoteRepository
+import com.example.notizen.data.model.Note
 import com.example.notizen.databinding.FragmentEditBinding
-
-//import com.example.notizen.utils.Globals
-//import com.example.notizen.utils.Globals.Companion.TAG_FRAG_ADD
-//import com.example.notizen.utils.Globals.Companion.TAG_FRAG_UPDATE
-//import com.example.notizen.utils.Logger
-//import com.example.notizen.viewmodel.RecipeViewModel
+import com.example.notizen.viewmodel.NoteViewModel
 
 
 class EditFragment : Fragment() {
     private val TAG = "EditFragment"
     private lateinit var binding: FragmentEditBinding
-//    private val args by navArgs<EditFragmentArgs>()
-//    private val viewModel: RecipeViewModel by viewModels {
-//        RecipeViewModel.Factory(RecipeRepository(requireActivity().application))
-//    }
+    private val args by navArgs<EditFragmentArgs>()
+    private val viewModel: NoteViewModel by viewModels {
+        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,14 +29,10 @@ class EditFragment : Fragment() {
         binding = FragmentEditBinding.inflate(inflater, container, false)
 
         binding.apply {
-//            etUpdateName.setText(args.currentRecipe.name)
-//            etUpdateDescription.setText(args.currentRecipe.description)
-//            etUpdateIngredient1.setText(args.currentRecipe.ingredients[0])
-//            etUpdateIngredient2.setText(args.currentRecipe.ingredients[1])
-//            etUpdateIngredient3.setText(args.currentRecipe.ingredients[2])
-//            etUpdateIngredient4.setText(args.currentRecipe.ingredients[3])
-//            etUpdateIngredient5.setText(args.currentRecipe.ingredients[4])
+            etTitle.setText(args.note.title)
+            etDescription.setText(args.note.description)
             btnSave.setOnClickListener {
+                viewModel.editNote(Note(args.note.id, etTitle.text.toString(), etDescription.text.toString()))
                 findNavController().navigate(R.id.action_editFragment_to_listFragment)
             }
         }
