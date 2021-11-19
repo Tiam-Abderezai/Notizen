@@ -12,6 +12,7 @@ import com.example.notizen.R
 import com.example.notizen.data.model.Note
 import com.example.notizen.databinding.FragmentListBinding
 import com.example.notizen.ui.adapter.NoteAdapter
+import kotlinx.android.synthetic.main.activity_main.*
 
 //import com.example.notizen.data.model.Recipe
 //import com.example.notizen.data.repo.RecipeRepository
