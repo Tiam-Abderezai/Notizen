@@ -7,7 +7,7 @@
     android:padding="24sp">
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_item_id"
+        android:id="@+id/tv_note_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1"
@@ -18,18 +18,18 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_item_name"
+        android:id="@+id/tv_note_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Bread"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/tv_item_description"
+        app:layout_constraintBottom_toTopOf="@id/tv_note_description"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_item_description"
+        android:id="@+id/tv_note_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Is very delicious"
@@ -37,7 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_name" />
+        app:layout_constraintTop_toBottomOf="@id/tv_note_name" />
 
 <!--    <com.google.android.material.textview.MaterialTextView-->
 <!--        android:id="@+id/age_txt"-->

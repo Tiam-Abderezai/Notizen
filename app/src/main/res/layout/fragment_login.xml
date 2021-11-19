@@ -6,32 +6,25 @@
     android:layout_height="match_parent"
     android:padding="24dp"
     android:background="@color/teal_700"
-    tools:context=".ui.AddFragment">
+    tools:context=".ui.fragments.LoginFragment">
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_recipe"
+<View
+    android:id="@+id/view"
+    android:layout_width="match_parent"
+    android:layout_height="128dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintBottom_toTopOf="@id/et_username"
+    />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:ems="10"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:hint="Recipe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_add_name"
-        />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Name"
+        android:hint="username"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -39,15 +32,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_recipe" />
+        app:layout_constraintTop_toBottomOf="@id/view" />
 
     <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_description"
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="64dp"
         android:ems="10"
-        android:hint="Description"
+        android:hint="*******"
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -55,116 +48,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_name" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/tv_ingredients"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        android:hint="Ingredients"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_add_description"
-        app:layout_constraintBottom_toTopOf="@id/et_add_ingredient1"
-        />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_ingredient1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:hint="1."
-        android:inputType="textAutoCorrect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_ingredients" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_ingredient2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="2."
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:inputType="textAutoCorrect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_ingredient1" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_ingredient3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="3."
-        android:inputType="textAutoCorrect"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_ingredient2" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_ingredient4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="4."
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:inputType="textAutoCorrect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_ingredient3" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/et_add_ingredient5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:hint="5."
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:inputType="textAutoCorrect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_ingredient4" />
+        app:layout_constraintTop_toBottomOf="@+id/et_username" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_btn"
+        android:id="@+id/btn_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="+"
+        android:layout_marginTop="128dp"
+        android:text="login"
         android:textAlignment="center"
-        android:textSize="32sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_add_ingredient4" />
+        app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="register"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

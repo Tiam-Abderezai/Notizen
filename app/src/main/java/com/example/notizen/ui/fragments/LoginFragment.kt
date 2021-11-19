@@ -1,16 +1,11 @@
-package com.example.notizen.ui
+package com.example.notizen.ui.fragments
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
 //import com.example.notizen.data.model.Recipe
@@ -37,8 +32,13 @@ class LoginFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        binding.addBtn.setOnClickListener {
-//            insertDataToDatabase()
+        binding.apply {
+            btnLogin.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+            }
+            btnRegister.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+            }
         }
         Log.d(TAG, "onCreateView: ")
 //        Logger.logd(TAG_FRAG_ADD, "onCreateView")

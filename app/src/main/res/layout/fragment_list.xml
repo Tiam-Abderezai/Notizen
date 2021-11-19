@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/blue"
-    tools:context=".ui.ListFragment">
+    tools:context=".ui.fragments.ListFragment">
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -19,11 +19,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/addNewRecipe"
+        android:id="@+id/btn_compose"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
-        android:src="@drawable/ic_add"
         android:focusable="true"
         android:tint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"

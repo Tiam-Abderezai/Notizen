@@ -1,29 +1,24 @@
-package com.example.notizen.ui
+package com.example.notizen.ui.fragments
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 //import com.example.notizen.ui.adapter.ListAdapter
 //import com.example.notizen.viewmodel.RecipeViewModel
 import com.example.notizen.R
+import com.example.notizen.data.model.Note
 import com.example.notizen.databinding.FragmentListBinding
+import com.example.notizen.ui.adapter.NoteAdapter
+
 //import com.example.notizen.data.model.Recipe
 //import com.example.notizen.data.repo.RecipeRepository
 //import com.example.notizen.databinding.FragmentListBinding
 //import com.example.notizen.utils.Globals
 //import com.example.notizen.utils.Globals.Companion.TAG_FRAG_LIST
 //import com.example.notizen.utils.Logger
-import kotlinx.coroutines.flow.map
 
 class ListFragment : Fragment() {
     private val TAG = "ListFragment"
@@ -37,6 +32,22 @@ class ListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
+
+        binding.apply {
+            btnCompose.setOnClickListener {
+                findNavController().navigate(R.id.action_listFragment_to_composeFragment)
+            }
+            recyclerView.apply {
+                layoutManager = LinearLayoutManager(requireContext())
+                // dummy data
+                val note1 = Note(1,"Nap","sleep and rest")
+                val note2 = Note(1,"Eat","eat and drink")
+                val note3 = Note(1,"Think","think and ponder")
+                val notes = listOf(note1, note2, note3)
+                adapter = NoteAdapter(notes)
+            }
+        }
+
 //        binding.recyclerView.apply {
 //            layoutManager = LinearLayoutManager(requireContext())
 //            binding.addNewRecipe.setOnClickListener {
@@ -54,7 +65,7 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        viewModel.recipes.observe(viewLifecycleOwner, Observer { recipes ->
-            Log.d(TAG, "onViewCreated: ")
+        Log.d(TAG, "onViewCreated: ")
 //            binding.recyclerView.adapter = ListAdapter(recipes)
 //        })
     }

@@ -1,21 +1,15 @@
-package com.example.notizen.ui
+package com.example.notizen.ui.fragments
 
-import android.app.AlertDialog
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextUtils
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
-import android.widget.Toast
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
 //import com.example.notizen.data.model.Recipe
 //import com.example.notizen.data.repo.RecipeRepository
 import com.example.notizen.databinding.FragmentEditBinding
+
 //import com.example.notizen.utils.Globals
 //import com.example.notizen.utils.Globals.Companion.TAG_FRAG_ADD
 //import com.example.notizen.utils.Globals.Companion.TAG_FRAG_UPDATE
@@ -45,8 +39,8 @@ class EditFragment : Fragment() {
 //            etUpdateIngredient3.setText(args.currentRecipe.ingredients[2])
 //            etUpdateIngredient4.setText(args.currentRecipe.ingredients[3])
 //            etUpdateIngredient5.setText(args.currentRecipe.ingredients[4])
-            updateBtn.setOnClickListener {
-//                updateItem()
+            btnSave.setOnClickListener {
+                findNavController().navigate(R.id.action_editFragment_to_listFragment)
             }
         }
 

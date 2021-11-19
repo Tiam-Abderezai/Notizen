@@ -6,31 +6,28 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.notizen.ui.LoginFragment"
+        android:name="com.example.notizen.ui.fragments.LoginFragment"
         android:label="Login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_listFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/listFragment" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.example.notizen.ui.RegisterFragment"
+        android:name="com.example.notizen.ui.fragments.RegisterFragment"
         android:label="Register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_listFragment_to_composeFragment"
-            app:destination="@id/composeFragment" />
-        <action
-            android:id="@+id/action_listFragment_to_detailFragment"
-            app:destination="@id/detailFragment" />
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.notizen.ui.ListFragment"
+        android:name="com.example.notizen.ui.fragments.ListFragment"
         android:label="List"
         tools:layout="@layout/fragment_list" >
         <action
@@ -42,15 +39,16 @@
     </fragment>
     <fragment
         android:id="@+id/composeFragment"
-        android:name="com.example.notizen.ui.ComposeFragment"
+        android:name="com.example.notizen.ui.fragments.ComposeFragment"
         android:label="Compose"
         tools:layout="@layout/fragment_compose" >
-    <!--        <action-->
-    <!--            android:id="@+id/action_addFragment_to_listFragment"-->
-    <!--            app:destination="@id/listFragment" />-->
+            <action
+                android:id="@+id/action_composeFragment_to_listFragment"
+                app:destination="@id/listFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.notizen.ui.DetailFragment"
+        android:name="com.example.notizen.ui.fragments.DetailFragment"
         android:label="Detail"
         tools:layout="@layout/fragment_detail" >
         <action
@@ -62,19 +60,19 @@
     </fragment>
     <fragment
         android:id="@+id/editFragment"
-        android:name="com.example.notizen.ui.EditFragment"
+        android:name="com.example.notizen.ui.fragments.EditFragment"
         android:label="Edit"
         tools:layout="@layout/fragment_edit" >
-<!--        <action-->
-<!--            android:id="@+id/action_editFragment_to_listFragment"-->
-<!--            app:destination="@id/listFragment" />-->
+        <action
+            android:id="@+id/action_editFragment_to_listFragment"
+            app:destination="@id/listFragment" />
 <!--        <argument-->
 <!--            android:name="currentRecipe"-->
 <!--            app:argType="com.example.notizen.data.model.Recipe" />-->
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.notizen.ui.ProfileFragment"
+        android:name="com.example.notizen.ui.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" >
         <!--        <action-->

@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
-    android:background="@color/purple_500"
-    tools:context=".ui.UpdateFragment">
+    android:background="@color/yellow"
+    tools:context=".ui.fragments.EditFragment">
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_recipe"
@@ -154,11 +154,11 @@
         app:layout_constraintTop_toBottomOf="@+id/et_update_ingredient4" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/update_btn"
+        android:id="@+id/btn_save"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="Update"
+        android:text="Save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
