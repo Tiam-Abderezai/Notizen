@@ -4,12 +4,13 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-data class User(
+@JsonClass(generateAdapter = true)
+data class RegisterResponse(
     val username: String,
     val email: String,
-    val password: String,
-    val notes: List<Note>
-) : Parcelable
+    val password: String
+//    val notes: List<Note>
+)
