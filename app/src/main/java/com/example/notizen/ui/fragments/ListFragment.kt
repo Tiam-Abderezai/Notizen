@@ -4,29 +4,22 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-//import com.example.notizen.ui.adapter.ListAdapter
-//import com.example.notizen.viewmodel.RecipeViewModel
 import com.example.notizen.R
-import com.example.notizen.data.model.Note
+import com.example.notizen.data.NoteRepository
 import com.example.notizen.databinding.FragmentListBinding
 import com.example.notizen.ui.adapter.NoteAdapter
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.notizen.viewmodel.NoteViewModel
 
-//import com.example.notizen.data.model.Recipe
-//import com.example.notizen.data.repo.RecipeRepository
-//import com.example.notizen.databinding.FragmentListBinding
-//import com.example.notizen.utils.Globals
-//import com.example.notizen.utils.Globals.Companion.TAG_FRAG_LIST
-//import com.example.notizen.utils.Logger
 
 class ListFragment : Fragment() {
     private val TAG = "ListFragment"
     private lateinit var binding: FragmentListBinding
-//    private val viewModel: RecipeViewModel by viewModels {
-//        RecipeViewModel.Factory(RecipeRepository(requireActivity().application))
-//    }
+    private val viewModel: NoteViewModel by viewModels {
+        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,11 +34,11 @@ class ListFragment : Fragment() {
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
                 // dummy data
-                val note1 = Note(1,"Nap","sleep and rest")
-                val note2 = Note(1,"Eat","eat and drink")
-                val note3 = Note(1,"Think","think and ponder")
-                val notes = listOf(note1, note2, note3)
-                adapter = NoteAdapter(notes)
+//                val note1 = Note(1,"Nap","sleep and rest")
+//                val note2 = Note(1,"Eat","eat and drink")
+//                val note3 = Note(1,"Think","think and ponder")
+//                val notes = listOf(note1, note2, note3)
+//                adapter = NoteAdapter(notes)
             }
         }
 
@@ -65,10 +58,10 @@ class ListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel.recipes.observe(viewLifecycleOwner, Observer { recipes ->
-        Log.d(TAG, "onViewCreated: ")
-//            binding.recyclerView.adapter = ListAdapter(recipes)
-//        })
+        viewModel.notes.observe(viewLifecycleOwner, { notes ->
+        Log.d(TAG, "onViewCreated: $notes")
+            binding.recyclerView.adapter = NoteAdapter(notes)
+        })
     }
 
 //    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

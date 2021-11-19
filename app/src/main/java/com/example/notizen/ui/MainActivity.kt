@@ -26,24 +26,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
+//        binding.apply {
 //            navController = Navigation.findNavController(navHostFragment)
 //            setupActionBarWithNavController(navController)
-            bottomNavigation.setOnItemReselectedListener { item ->
-                when (item.itemId) {
-                    R.id.item_home -> {
+//            bottomNavigation.setOnItemReselectedListener { item ->
+//                when (item.itemId) {
+//                    R.id.item_home -> {
 //                findNavController().navigate(R.id.action_addFragment_to_listFragment)
-                    }
-                    R.id.item_profile -> {
+//                    }
+//                    R.id.item_profile -> {
 //                        Navigation.findNavController(navHostFragment)
 //                            .navigate(R.id.action_listFragment_to_profileFragment)
-                        Toast.makeText(applicationContext, "CLICKED", Toast.LENGTH_SHORT).show()
+//                        Toast.makeText(applicationContext, "CLICKED", Toast.LENGTH_SHORT).show()
                         // Respond to navigation item 2 reselection
-                    }
-                }
+//                    }
+//                }
 //        setupSmoothBottomMenu()
-            }
-        }
+//            }
+//        }
     }
 
 
