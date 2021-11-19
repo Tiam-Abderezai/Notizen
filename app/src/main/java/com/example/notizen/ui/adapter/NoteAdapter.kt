@@ -32,7 +32,7 @@ class NoteAdapter(
         val currentItem = notes[position]
         Log.d(TAG, "onBindViewHolder: $currentItem")
         holder.itemView.tv_note_id.text = currentItem.id.toString()
-        holder.itemView.tv_note_name.text = currentItem.name
+        holder.itemView.tv_note_name.text = currentItem.title
         holder.itemView.tv_note_description.text = currentItem.description
 //
         holder.itemView.setOnClickListener {
