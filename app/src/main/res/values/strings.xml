@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Notizen</string>
+    <string name="description">Do the exercises in chapter 1 of algebra. Make sure to work on extra credit in order to get good grades.</string>
+    <string name="title">Finish homework</string>
+    <string name="createdAt">01/16/1988</string>
+    <string name="updatedAt">11/19/2021</string>
+    <string name="save">Save</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
 </resources>

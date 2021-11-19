@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
-import com.example.notizen.data.NoteRepository
+import com.example.notizen.data.repo.NoteRepository
 import com.example.notizen.data.model.Note
 import com.example.notizen.databinding.FragmentEditBinding
 import com.example.notizen.viewmodel.NoteViewModel
@@ -31,7 +31,12 @@ class EditFragment : Fragment() {
             etTitle.setText(args.note.title)
             etDescription.setText(args.note.description)
             btnSave.setOnClickListener {
-                viewModel.editNote(Note(args.note.id, etTitle.text.toString(), etDescription.text.toString()))
+                viewModel.editNote(Note(args.note.id, etTitle.text.toString(),
+                    etDescription.text.toString(),
+                    false,
+                    args.note.createdAt,
+                    System.currentTimeMillis()
+                ))
                 findNavController().navigate(R.id.action_editFragment_to_listFragment)
             }
         }

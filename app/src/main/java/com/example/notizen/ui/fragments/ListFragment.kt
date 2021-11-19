@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notizen.R
-import com.example.notizen.data.NoteRepository
+import com.example.notizen.data.repo.NoteRepository
 import com.example.notizen.databinding.FragmentListBinding
 import com.example.notizen.ui.adapter.NoteAdapter
 import com.example.notizen.viewmodel.NoteViewModel
@@ -20,20 +20,17 @@ class ListFragment : Fragment() {
     private val viewModel: NoteViewModel by viewModels {
         NoteViewModel.Factory(NoteRepository(requireActivity().application))
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentListBinding.inflate(inflater, container, false)
-
         binding.apply {
             btnCompose.setOnClickListener {
                 findNavController().navigate(R.id.action_listFragment_to_composeFragment)
             }
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-                // dummy data
 //                val note1 = Note(1,"Nap","sleep and rest")
 //                val note2 = Note(1,"Eat","eat and drink")
 //                val note3 = Note(1,"Think","think and ponder")

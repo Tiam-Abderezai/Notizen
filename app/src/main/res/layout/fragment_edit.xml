@@ -4,61 +4,72 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
     android:background="@color/yellow"
     tools:context=".ui.fragments.EditFragment">
 
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_title"
-        />
-
-
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_title"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Title"
-        android:textAlignment="viewStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:inputType="textAutoCorrect"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/et_description"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_description"
         android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Description"
-        android:textAlignment="viewStart"
-        android:textSize="32sp"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textAlignment="center"
         android:textStyle="bold"
-        android:inputType="textAutoCorrect"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_createdAt"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_title" />
+        app:layout_constraintTop_toBottomOf="@id/et_title"
+        />
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_createdAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:text="@string/createdAt"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/tv_updatedAt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_description" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_updatedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/updatedAt"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_createdAt" />
+
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="Save"
+        android:layout_marginTop="254dp"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_description"

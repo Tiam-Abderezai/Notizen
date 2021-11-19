@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
-import com.example.notizen.data.NoteRepository
+import com.example.notizen.data.repo.NoteRepository
 import com.example.notizen.databinding.FragmentDetailBinding
 import com.example.notizen.viewmodel.NoteViewModel
 
@@ -25,8 +25,7 @@ class DetailFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         binding.apply {

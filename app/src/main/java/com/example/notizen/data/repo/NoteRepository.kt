@@ -1,16 +1,17 @@
-package com.example.notizen.data
+package com.example.notizen.data.repo
 
 import android.app.Application
+import com.example.notizen.data.NoteDatabase
 import com.example.notizen.data.model.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 
 
 class NoteRepository(private val application: Application) {
+    private val TAG = "NoteRepository"
     private val noteDao by lazy {
         NoteDatabase.getDatabase(application).noteDao()
     }
-
     fun readAllData() = noteDao.readAllData().flowOn(Dispatchers.IO)
 
     suspend fun addNote(note: Note) {

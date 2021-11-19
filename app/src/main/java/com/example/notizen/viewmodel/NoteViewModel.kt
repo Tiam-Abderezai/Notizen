@@ -1,7 +1,7 @@
 package com.example.notizen.viewmodel
 
 import androidx.lifecycle.*
-import com.example.notizen.data.NoteRepository
+import com.example.notizen.data.repo.NoteRepository
 import com.example.notizen.data.model.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

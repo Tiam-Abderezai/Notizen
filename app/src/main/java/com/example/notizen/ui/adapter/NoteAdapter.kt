@@ -31,10 +31,11 @@ class NoteAdapter(
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val item = notes[position]
         Log.d(TAG, "onBindViewHolder: $item")
-        holder.itemView.tv_note_id.text = item.id.toString()
-        holder.itemView.tv_note_name.text = item.title
-        holder.itemView.tv_note_description.text = item.description
-//
+        holder.itemView.chk_completed.isChecked = true
+        holder.itemView.tv_title.text = item.title
+        holder.itemView.tv_description.text = item.description
+        holder.itemView.tv_createdAt.text = item.createdAt.toString()
+        holder.itemView.tv_updatedAt.text = item.updatedAt.toString()
         holder.itemView.setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
             holder.itemView.findNavController().navigate(action)

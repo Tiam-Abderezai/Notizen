@@ -6,7 +6,7 @@
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.18385416666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1621376811594203" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.1621376811594203" />
-        <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.1621376811594203" />
+        <entry key="app/src/main/res/layout/fragment_compose.xml" value="0.125" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.1621376811594203" />
         <entry key="app/src/main/res/layout/fragment_edit.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.1621376811594203" />
@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1621376811594203" />
         <entry key="app/src/main/res/layout/fragment_register.xml" value="0.1621376811594203" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.1621376811594203" />
-        <entry key="app/src/main/res/layout/note_item.xml" value="0.16770833333333332" />
+        <entry key="app/src/main/res/layout/note_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/recipe_item.xml" value="0.15070921985815602" />
         <entry key="app/src/main/res/menu/menu_bottom.xml" value="0.16770833333333332" />
       </map>

@@ -5,24 +5,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/purple_500">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_title"
-        />
 
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="64dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Title"
+        android:hint="@string/hint_title"
         android:textAlignment="viewStart"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -30,15 +20,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/view" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/et_description"
         android:layout_width="match_parent"
         android:layout_height="128dp"
-        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="Description"
+        android:hint="@string/hint_description"
         android:textAlignment="viewStart"
         android:textSize="32sp"
         android:textStyle="bold"
@@ -53,8 +42,8 @@
         android:id="@+id/btn_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:text="Save"
+        android:layout_marginTop="254dp"
+        android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/et_description"
