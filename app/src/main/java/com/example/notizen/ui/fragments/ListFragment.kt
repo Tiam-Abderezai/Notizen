@@ -42,12 +42,6 @@ class ListFragment : Fragment() {
             }
         }
 
-//        binding.recyclerView.apply {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            binding.addNewRecipe.setOnClickListener {
-//                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
-//            }
-//        }
         setHasOptionsMenu(true)
         Log.d(TAG, "onCreateView: ")
         return binding.root
@@ -74,7 +68,7 @@ class ListFragment : Fragment() {
 //        }
 //        return super.onOptionsItemSelected(item)
 //    }
-
+//
 //    private fun deleteAllRecipes() {
 //        val builder = AlertDialog.Builder(requireContext())
 //        builder.setPositiveButton("Yes") { _, _ ->

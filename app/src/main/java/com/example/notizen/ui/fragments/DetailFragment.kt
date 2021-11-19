@@ -32,6 +32,10 @@ class DetailFragment : Fragment() {
         binding.apply {
             tvTitle.text = args.note.title
             tvDescription.text = args.note.description
+            btnDelete.setOnClickListener {
+                viewModel.deleteNote(args.note)
+                findNavController().navigate(R.id.listFragment)
+            }
             btnEdit.setOnClickListener {
                 val action = DetailFragmentDirections.actionDetailFragmentToEditFragment(args.note)
                 findNavController().navigate(action)

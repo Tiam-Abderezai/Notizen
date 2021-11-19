@@ -24,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Title"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
         android:inputType="textAutoCorrect"
@@ -40,7 +40,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Description"
-        android:textAlignment="viewStart"
+        android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
         android:inputType="textAutoCorrect"
@@ -49,6 +49,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="128dp"
+        android:text="Delete"
+        app:layout_constraintEnd_toStartOf="@id/btn_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_description"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_edit"
@@ -57,7 +68,7 @@
         android:layout_marginTop="128dp"
         android:text="Edit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_delete"
         app:layout_constraintTop_toBottomOf="@id/tv_description"
         app:layout_constraintBottom_toBottomOf="parent"
         />
