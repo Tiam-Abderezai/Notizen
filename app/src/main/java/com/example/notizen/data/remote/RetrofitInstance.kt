@@ -18,6 +18,6 @@ object RetrofitInstance {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val userService: RetrofitService =
-        retrofit.create(RetrofitService::class.java)
+    val authService: AuthService =
+        retrofit.create(AuthService::class.java)
 }

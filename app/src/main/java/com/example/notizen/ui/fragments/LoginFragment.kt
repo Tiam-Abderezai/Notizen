@@ -6,43 +6,49 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
-//import com.example.notizen.data.model.Recipe
-//import com.example.notizen.data.repo.RecipeRepository
+import com.example.notizen.data.model.LoginBody
 import com.example.notizen.databinding.FragmentLoginBinding
-//import com.example.notizen.utils.Globals
-//import com.example.notizen.utils.Globals.Companion.TAG_FRAG_ADD
-//import com.example.notizen.utils.Logger
-//import com.example.notizen.viewmodel.RecipeViewModel
-//import kotlinx.android.synthetic.main.fragment_add.*
+import com.example.notizen.viewmodel.AuthViewModel
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
 
 class LoginFragment : Fragment() {
 
     private lateinit var binding: FragmentLoginBinding
     private val TAG = "LoginFragment"
-//    private val viewModel: RecipeViewModel by viewModels {
-//        RecipeViewModel.Factory(RecipeRepository(requireActivity().application))
-//    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    ): View {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
-
         binding.apply {
             btnLogin.setOnClickListener {
-                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                lifecycleScope.launch { 
+                    try {
+                        AuthViewModel.login(
+                            LoginBody(
+                                etUsername.text.toString(),
+                                etPassword.text.toString()
+                            )
+                        ).apply {
+                            Log.d(TAG, "onCreateView: token: $token message: $message")
+                            findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                        }
+                    } catch (ex: Exception){
+                        Log.d(TAG, "onCreateView: $ex")
+                    }
+                }
             }
             btnRegister.setOnClickListener {
                 findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
             }
         }
         Log.d(TAG, "onCreateView: ")
-//        Logger.logd(TAG_FRAG_ADD, "onCreateView")
-
         return binding.root
     }
 

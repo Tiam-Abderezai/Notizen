@@ -8,7 +8,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 @JsonClass(generateAdapter = true)
-data class RegisterResponse(
+data class RegisterBody(
     val username: String,
     val email: String,
     val password: String
