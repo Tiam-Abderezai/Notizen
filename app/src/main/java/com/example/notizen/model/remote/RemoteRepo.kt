@@ -38,6 +38,10 @@ object RemoteRepo {
         Log.d(TAG, "deleteNote: ")
         return RemoteInstance.crudService.deleteNote(id, auth)
     }
+//    suspend fun deleteAllNotes(auth: Map<String, String>): List<NoteResponse> {
+//        Log.d(TAG, "deleteAllNotes: ")
+//        return RemoteInstance.crudService.deleteAllNotes(auth)
+//    }
 //    suspend fun updateNote(body: NoteResponse): AuthResponse {
 //        Log.d(TAG, "updateNote: ")
 //        return RemoteInstance.authService.updateNote(body)

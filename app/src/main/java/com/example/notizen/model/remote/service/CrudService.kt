@@ -24,4 +24,8 @@ interface CrudService {
 
     @DELETE("todos/{id}")
     suspend fun deleteNote(@Path("id") id: String, @HeaderMap auth: Map<String, String>): NoteResponse
+
+//    @DELETE("todos")
+//    suspend fun deleteAllNotes(@HeaderMap auth: Map<String, String>): List<NoteResponse>
+
 }

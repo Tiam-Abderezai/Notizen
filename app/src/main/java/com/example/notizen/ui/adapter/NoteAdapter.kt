@@ -31,6 +31,7 @@ class NoteAdapter(
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
         val item = notes[position]
         Log.d(TAG, "onBindViewHolder: $item")
+        holder.itemView.id = position
         holder.itemView.chk_completed.isChecked = true
         holder.itemView.tv_title.text = item.title
         holder.itemView.tv_description.text = item.description

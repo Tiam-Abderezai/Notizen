@@ -16,5 +16,7 @@ object RemoteViewModel : ViewModel() {
 //    suspend fun getNote(body: NoteResponse) = RemoteRepo.getNote(body)
     suspend fun getAllNotes(auth: Map<String, String>) = RemoteRepo.getAllNotes(auth)
     suspend fun deleteNote(id: String, auth: Map<String, String>) = RemoteRepo.deleteNote(id, auth)
+//    suspend fun deleteAllNotes(auth: Map<String, String>) = RemoteRepo.deleteAllNotes(auth)
+
 //    suspend fun updateNote(body: NoteResponse) = RemoteRepo.updateNote(body)
 }
