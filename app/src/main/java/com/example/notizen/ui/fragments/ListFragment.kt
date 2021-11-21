@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.notizen.R
 import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.databinding.FragmentListBinding
@@ -18,6 +20,7 @@ import com.example.notizen.model.local.DataStore
 import com.example.notizen.ui.adapter.NoteAdapter
 import com.example.notizen.viewmodel.LocalViewModel
 import com.example.notizen.viewmodel.RemoteViewModel
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.util.*
@@ -85,6 +88,32 @@ class ListFragment : Fragment() {
                 Log.d(TAG, "onCreateView: $ex")
             }
         }
+
+        val itemTouchHelper = ItemTouchHelper(simpleCallback)
+        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
+    }
+
+    private var simpleCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP.or(ItemTouchHelper.DOWN), 0){
+        override fun onMove(
+            recyclerView: RecyclerView,
+            viewHolder: RecyclerView.ViewHolder,
+            target: RecyclerView.ViewHolder
+        ): Boolean {
+            var positionStart = viewHolder.adapterPosition
+            var positionEnd = target.adapterPosition
+            try {
+                Collections.swap(displayNotes, positionStart, positionEnd)
+                binding.recyclerView.adapter?.notifyItemMoved(positionStart, positionEnd)
+            } catch(ex: Exception){
+                Log.d(TAG, "onMove: $ex")
+            }
+            return true
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+            TODO("Not yet implemented")
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
