@@ -40,5 +40,6 @@ class NoteAdapter(
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
             holder.itemView.findNavController().navigate(action)
         }
+
     }
 }

@@ -12,7 +12,7 @@ import com.example.notizen.R
 import com.example.notizen.model.local.DataStore
 import com.example.notizen.model.data.body.RegisterBody
 import com.example.notizen.databinding.FragmentRegisterBinding
-import com.example.notizen.viewmodel.AuthViewModel
+import com.example.notizen.viewmodel.RemoteViewModel
 import kotlinx.coroutines.launch
 
 class RegisterFragment : Fragment() {
@@ -29,7 +29,7 @@ class RegisterFragment : Fragment() {
         binding.apply {
             btnRegister.setOnClickListener {
                 lifecycleScope.launch{
-                    AuthViewModel.register(
+                    RemoteViewModel.register(
                         RegisterBody(
                         etUsername.text.toString(),
                         etEmail.text.toString(),

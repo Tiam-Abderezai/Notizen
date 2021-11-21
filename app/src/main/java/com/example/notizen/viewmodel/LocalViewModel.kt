@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
-class NoteViewModel(
+class LocalViewModel(
     private val noteRepo: LocalRepo
 ) : ViewModel()  {
 
@@ -39,8 +39,8 @@ class NoteViewModel(
         private val noteRepo: LocalRepo
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {
-                return NoteViewModel(noteRepo) as T
+            if (modelClass.isAssignableFrom(LocalViewModel::class.java)) {
+                return LocalViewModel(noteRepo) as T
             } else {
                 throw IllegalArgumentException("Cannot create instance of ContactViewModel")
             }

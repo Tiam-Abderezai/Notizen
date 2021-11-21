@@ -59,7 +59,7 @@
             app:destination="@id/editFragment" />
         <argument
             android:name="note"
-            app:argType="com.example.notizen.data.model.Note" />
+            app:argType="com.example.notizen.model.data.Note"/>
 <!--        <argument-->
 <!--            android:name="currentRecipe"-->
 <!--            app:argType="com.example.notizen.data.model.Recipe" />-->
@@ -74,7 +74,7 @@
             app:destination="@id/listFragment" />
         <argument
             android:name="note"
-            app:argType="com.example.notizen.data.model.Note" />
+            app:argType="com.example.notizen.model.data.Note" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"

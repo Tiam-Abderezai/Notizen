@@ -11,15 +11,15 @@ import com.example.notizen.R
 import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.model.data.Note
 import com.example.notizen.databinding.FragmentEditBinding
-import com.example.notizen.viewmodel.NoteViewModel
+import com.example.notizen.viewmodel.LocalViewModel
 
 
 class EditFragment : Fragment() {
     private val TAG = "EditFragment"
     private lateinit var binding: FragmentEditBinding
     private val args by navArgs<EditFragmentArgs>()
-    private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(LocalRepo(requireActivity().application))
+    private val viewModel: LocalViewModel by viewModels {
+        LocalViewModel.Factory(LocalRepo(requireActivity().application))
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

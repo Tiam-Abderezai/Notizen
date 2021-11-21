@@ -12,15 +12,15 @@ import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
 import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.databinding.FragmentDetailBinding
-import com.example.notizen.viewmodel.NoteViewModel
+import com.example.notizen.viewmodel.LocalViewModel
 
 class DetailFragment : Fragment() {
     private lateinit var binding: FragmentDetailBinding
     private val args by navArgs<DetailFragmentArgs>()
     private val TAG = "DetailFragment"
 
-        private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(LocalRepo(requireActivity().application))
+        private val viewModel: LocalViewModel by viewModels {
+        LocalViewModel.Factory(LocalRepo(requireActivity().application))
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

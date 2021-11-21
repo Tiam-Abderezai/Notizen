@@ -3,27 +3,47 @@ package com.example.notizen.ui.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notizen.R
 import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.databinding.FragmentListBinding
+import com.example.notizen.model.data.Note
+import com.example.notizen.model.data.body.LoginBody
+import com.example.notizen.model.local.DataStore
 import com.example.notizen.ui.adapter.NoteAdapter
-import com.example.notizen.viewmodel.NoteViewModel
+import com.example.notizen.viewmodel.LocalViewModel
+import com.example.notizen.viewmodel.RemoteViewModel
+import kotlinx.coroutines.launch
+import java.lang.Exception
+import java.util.*
+import kotlin.collections.HashMap
 
 
 class ListFragment : Fragment() {
     private val TAG = "ListFragment"
     private lateinit var binding: FragmentListBinding
-    private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(LocalRepo(requireActivity().application))
+    private lateinit var token: String
+    private val localVM: LocalViewModel by viewModels {
+        LocalViewModel.Factory(LocalRepo(requireActivity().application))
     }
+    private var displayNotes = mutableListOf<Note>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        lifecycleScope.launch {
+            if (!context?.let { DataStore(it).getToken() }.isNullOrEmpty()) {
+                token = DataStore(requireActivity()).getToken().toString()
+                Log.d(TAG, "tokenCheck:${DataStore(requireContext()).getToken()}")
+            }
+//            findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+        }
         binding = FragmentListBinding.inflate(inflater, container, false)
         binding.apply {
             btnCompose.setOnClickListener {
@@ -31,11 +51,6 @@ class ListFragment : Fragment() {
             }
             recyclerView.apply {
                 layoutManager = LinearLayoutManager(requireContext())
-//                val note1 = Note(1,"Nap","sleep and rest")
-//                val note2 = Note(1,"Eat","eat and drink")
-//                val note3 = Note(1,"Think","think and ponder")
-//                val notes = listOf(note1, note2, note3)
-//                adapter = NoteAdapter(notes)
             }
         }
 
@@ -43,44 +58,73 @@ class ListFragment : Fragment() {
         Log.d(TAG, "onCreateView: ")
         return binding.root
     }
-///////////////////////
-// OVERRIDE METHODS  //
-///////////////////////
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.notes.observe(viewLifecycleOwner, { notes ->
-        Log.d(TAG, "onViewCreated: $notes")
+        localVM.notes.observe(viewLifecycleOwner, { notes ->
+            Log.d(TAG, "onViewCreated: $notes")
             binding.recyclerView.adapter = NoteAdapter(notes)
+            displayNotes.clear()
+            displayNotes.apply {
+                forEachIndexed { index, _ ->
+                    add(notes[index])
+                    Log.d(TAG, "onViewCreated:${notes[index]} ")
+                }
+            }
         })
+        lifecycleScope.launch {
+            try {
+                val auth = HashMap<String, String>()
+                auth["Authorization"] = token
+                RemoteViewModel.getAllNotes(
+                    auth
+                ).apply {
+                    Log.d(TAG, "onCreateView: all Notes size: ${this.size}")
+                }
+            } catch (ex: Exception) {
+                Log.d(TAG, "onCreateView: $ex")
+            }
+        }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        inflater.inflate(R.menu.delete_menu, menu)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_top, menu)
+        val item: MenuItem = menu.findItem(R.id.action_search)
+        item.let {
+            val searchView = it.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?) = true
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        if (item.itemId == R.id.menu_delete) {
-//            deleteAllRecipes()
-//        }
-//        return super.onOptionsItemSelected(item)
-//    }
-//
-//    private fun deleteAllRecipes() {
-//        val builder = AlertDialog.Builder(requireContext())
-//        builder.setPositiveButton("Yes") { _, _ ->
-//            viewModel.deleteAllRecipes()
-//            Toast.makeText(
-//                requireContext(),
-//                "Successfully removed everything",
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//        builder.setNegativeButton("No") { _, _ ->
-//
-//        }
-//        builder.setTitle("Delete everything?")
-//        builder.setMessage("Are you sure you want to delete everything?")
-//        builder.create().show()
-//    }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText.isNullOrEmpty()) {
+//                        displayNotes.clear()
+                        val search = newText?.lowercase(Locale.getDefault())
+                        displayNotes.apply {
+                            forEachIndexed() { index, element ->
+                                if (element.title.lowercase(Locale.getDefault())
+                                        .contains(search!!)
+                                ) {
+                                    add(element)
+
+                                }
+                                binding.recyclerView.adapter?.notifyDataSetChanged()
+                            }
+                        }
+
+                    } else {
+                        displayNotes.apply {
+                            clear()
+                            addAll(displayNotes)
+                            binding.recyclerView.adapter?.notifyDataSetChanged()
+                        }
+
+                    }
+
+                    return true
+                }
+            })
+        }
+        super.onCreateOptionsMenu(menu, inflater)
+
+    }
 }

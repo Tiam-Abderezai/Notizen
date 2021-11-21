@@ -12,7 +12,7 @@ import com.example.notizen.R
 import com.example.notizen.model.local.DataStore
 import com.example.notizen.model.data.body.LoginBody
 import com.example.notizen.databinding.FragmentLoginBinding
-import com.example.notizen.viewmodel.AuthViewModel
+import com.example.notizen.viewmodel.RemoteViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
@@ -29,7 +29,7 @@ class LoginFragment : Fragment() {
         lifecycleScope.launch {
            if(!context?.let { DataStore(it).getToken() }.isNullOrEmpty()){
                findNavController().navigate(R.id.action_loginFragment_to_listFragment)
-               Log.d(TAG, "tokenCheck:$this")
+               Log.d(TAG, "tokenCheck:${DataStore(requireContext()).getToken()}")
            }
         }
 
@@ -38,7 +38,7 @@ class LoginFragment : Fragment() {
             btnLogin.setOnClickListener {
                 lifecycleScope.launch { 
                     try {
-                        AuthViewModel.login(
+                        RemoteViewModel.login(
                             LoginBody(
                                 etUsername.text.toString(),
                                 etPassword.text.toString()

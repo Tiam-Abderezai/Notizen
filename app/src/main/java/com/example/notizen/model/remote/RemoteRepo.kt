@@ -1,9 +1,9 @@
 package com.example.notizen.model.remote
 
 import android.util.Log
-import com.example.notizen.model.data.body.AuthResponse
+import com.example.notizen.model.data.response.AuthResponse
 import com.example.notizen.model.data.body.LoginBody
-import com.example.notizen.model.data.body.NoteBody
+import com.example.notizen.model.data.response.NoteResponse
 import com.example.notizen.model.data.body.RegisterBody
 import com.olayg.halfwayapp.repo.remote.RemoteInstance
 
@@ -12,6 +12,7 @@ object RemoteRepo {
 
     // AUTH functions
     suspend fun register(body: RegisterBody): AuthResponse {
+        Log.d(TAG, "register: ")
         return RemoteInstance.authService.register(body)
     }
 
@@ -21,19 +22,24 @@ object RemoteRepo {
     }
 
     // CRUD functions
-    suspend fun getNote(body: NoteBody): AuthResponse {
-        return RemoteInstance.authService.getNote(body)
+//    suspend fun getNote(body: LoginBody): NoteResponse {
+//        Log.d(TAG, "getNote: ")
+//        return RemoteInstance.crudService.getNote(body)
+//    }
+    suspend fun getAllNotes(auth: Map<String, String>): List<NoteResponse> {
+        Log.d(TAG, "getAllNotes: ")
+        return RemoteInstance.crudService.getAllNotes(auth)
     }
-    suspend fun getAllNotes(body: NoteBody): AuthResponse {
-        return RemoteInstance.authService.getAllNotes(body)
+    suspend fun addNote(note: Map<String, String>, auth: Map<String,String>): NoteResponse {
+        Log.d(TAG, "addNote: ")
+        return RemoteInstance.crudService.addNote(note, auth)
     }
-    suspend fun addNote(body: NoteBody): AuthResponse {
-        return RemoteInstance.authService.addNote(body)
+    suspend fun deleteNote(id: String, auth: Map<String,String>): NoteResponse {
+        Log.d(TAG, "deleteNote: ")
+        return RemoteInstance.crudService.deleteNote(id, auth)
     }
-    suspend fun deleteNote(body: NoteBody): AuthResponse {
-        return RemoteInstance.authService.deleteNote(body)
-    }
-    suspend fun updateNote(body: NoteBody): AuthResponse {
-        return RemoteInstance.authService.updateNote(body)
-    }
+//    suspend fun updateNote(body: NoteResponse): AuthResponse {
+//        Log.d(TAG, "updateNote: ")
+//        return RemoteInstance.authService.updateNote(body)
+//    }
 }
