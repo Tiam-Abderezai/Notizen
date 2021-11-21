@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
+import com.example.notizen.data.local.DataStore
 import com.example.notizen.data.model.LoginBody
 import com.example.notizen.databinding.FragmentLoginBinding
 import com.example.notizen.viewmodel.AuthViewModel
@@ -25,6 +26,13 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        lifecycleScope.launch {
+           if(!context?.let { DataStore(it).getToken() }.isNullOrEmpty()){
+               findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+               Log.d(TAG, "tokenCheck:$this")
+           }
+        }
+
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.apply {
             btnLogin.setOnClickListener {
@@ -37,6 +45,7 @@ class LoginFragment : Fragment() {
                             )
                         ).apply {
                             Log.d(TAG, "onCreateView: token: $token message: $message")
+                            context?.let { DataStore(it).setToken(token) }
                             findNavController().navigate(R.id.action_loginFragment_to_listFragment)
                         }
                     } catch (ex: Exception){

@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.notizen.data.model.LoginBody
+import androidx.navigation.fragment.findNavController
+import com.example.notizen.R
+import com.example.notizen.data.local.DataStore
 import com.example.notizen.data.model.RegisterBody
 import com.example.notizen.databinding.FragmentRegisterBinding
 import com.example.notizen.viewmodel.AuthViewModel
@@ -33,7 +34,9 @@ class RegisterFragment : Fragment() {
                         etEmail.text.toString(),
                         etPassword.text.toString()
                     )).apply {
+                        context?.let { DataStore(it).setToken(token) }
                         Log.d(TAG, "onCreateView: token:$token message:$message")
+                        findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }
                 }
         }
