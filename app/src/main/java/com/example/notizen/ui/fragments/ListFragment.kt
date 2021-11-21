@@ -34,8 +34,6 @@ class ListFragment : Fragment() {
     private val localVM: LocalViewModel by viewModels {
         LocalViewModel.Factory(LocalRepo(requireActivity().application))
     }
-    private var displayNotes = mutableListOf<Note>()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,13 +65,6 @@ class ListFragment : Fragment() {
         localVM.notes.observe(viewLifecycleOwner, { notes ->
             Log.d(TAG, "onViewCreated: $notes")
             binding.recyclerView.adapter = NoteAdapter(notes)
-            displayNotes.clear()
-            displayNotes.apply {
-                forEachIndexed { index, _ ->
-                    add(notes[index])
-                    Log.d(TAG, "onViewCreated:${notes[index]} ")
-                }
-            }
         })
         lifecycleScope.launch {
             try {
@@ -88,72 +79,5 @@ class ListFragment : Fragment() {
                 Log.d(TAG, "onCreateView: $ex")
             }
         }
-
-        val itemTouchHelper = ItemTouchHelper(simpleCallback)
-        itemTouchHelper.attachToRecyclerView(binding.recyclerView)
-    }
-
-    private var simpleCallback = object : ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP.or(ItemTouchHelper.DOWN), 0){
-        override fun onMove(
-            recyclerView: RecyclerView,
-            viewHolder: RecyclerView.ViewHolder,
-            target: RecyclerView.ViewHolder
-        ): Boolean {
-            var positionStart = viewHolder.adapterPosition
-            var positionEnd = target.adapterPosition
-            try {
-                Collections.swap(displayNotes, positionStart, positionEnd)
-                binding.recyclerView.adapter?.notifyItemMoved(positionStart, positionEnd)
-            } catch(ex: Exception){
-                Log.d(TAG, "onMove: $ex")
-            }
-            return true
-        }
-
-        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-            TODO("Not yet implemented")
-        }
-
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_top, menu)
-        val item: MenuItem = menu.findItem(R.id.action_search)
-        item.let {
-            val searchView = it.actionView as SearchView
-            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String?) = true
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    if (newText.isNullOrEmpty()) {
-//                        displayNotes.clear()
-                        val search = newText?.lowercase(Locale.getDefault())
-                        displayNotes.apply {
-                            forEachIndexed() { index, element ->
-                                if (element.title.lowercase(Locale.getDefault())
-                                        .contains(search!!)
-                                ) {
-                                    add(element)
-
-                                }
-                                binding.recyclerView.adapter?.notifyDataSetChanged()
-                            }
-                        }
-
-                    } else {
-                        displayNotes.apply {
-                            clear()
-                            addAll(displayNotes)
-                            binding.recyclerView.adapter?.notifyDataSetChanged()
-                        }
-
-                    }
-
-                    return true
-                }
-            })
-        }
-        super.onCreateOptionsMenu(menu, inflater)
-
     }
 }
