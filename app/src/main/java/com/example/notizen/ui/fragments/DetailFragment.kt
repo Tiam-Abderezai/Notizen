@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.notizen.R
-import com.example.notizen.data.repo.NoteRepository
+import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.databinding.FragmentDetailBinding
 import com.example.notizen.viewmodel.NoteViewModel
 
@@ -20,7 +20,7 @@ class DetailFragment : Fragment() {
     private val TAG = "DetailFragment"
 
         private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+        NoteViewModel.Factory(LocalRepo(requireActivity().application))
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

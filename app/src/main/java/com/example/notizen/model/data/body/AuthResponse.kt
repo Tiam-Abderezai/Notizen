@@ -1,4 +1,4 @@
-package com.example.notizen.data.model
+package com.example.notizen.model.data.body
 
 import com.squareup.moshi.JsonClass
 

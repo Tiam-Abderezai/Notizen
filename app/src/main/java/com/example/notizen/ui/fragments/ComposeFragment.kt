@@ -9,17 +9,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
-import com.example.notizen.data.repo.NoteRepository
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.local.LocalRepo
+import com.example.notizen.model.data.Note
 import com.example.notizen.databinding.FragmentComposeBinding
 import com.example.notizen.viewmodel.NoteViewModel
-import java.util.*
 
 class ComposeFragment : Fragment() {
     private lateinit var binding: FragmentComposeBinding
     private val TAG = "ComposeFragment"
     private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+        NoteViewModel.Factory(LocalRepo(requireActivity().application))
     }
 
     override fun onCreateView(

@@ -1,4 +1,4 @@
-package com.example.notizen.data.local
+package com.example.notizen.model.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore

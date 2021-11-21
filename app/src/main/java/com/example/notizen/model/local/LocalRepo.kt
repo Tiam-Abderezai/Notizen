@@ -1,13 +1,13 @@
-package com.example.notizen.data.repo
+package com.example.notizen.model.local
 
 import android.app.Application
-import com.example.notizen.data.NoteDatabase
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.NoteDatabase
+import com.example.notizen.model.data.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 
 
-class NoteRepository(private val application: Application) {
+class LocalRepo(private val application: Application) {
     private val TAG = "NoteRepository"
     private val noteDao by lazy {
         NoteDatabase.getDatabase(application).noteDao()

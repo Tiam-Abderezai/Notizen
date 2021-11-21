@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.notizen.R
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.data.Note
 import com.example.notizen.ui.fragments.ListFragmentDirections
 import kotlinx.android.synthetic.main.note_item.view.*
 

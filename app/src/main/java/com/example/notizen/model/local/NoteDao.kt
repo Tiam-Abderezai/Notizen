@@ -1,6 +1,6 @@
-package com.example.notizen.data
+package com.example.notizen.model
 import androidx.room.*
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.data.Note
 import kotlinx.coroutines.flow.Flow
 
 @Dao

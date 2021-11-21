@@ -8,7 +8,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notizen.R
-import com.example.notizen.data.repo.NoteRepository
+import com.example.notizen.model.local.LocalRepo
 import com.example.notizen.databinding.FragmentListBinding
 import com.example.notizen.ui.adapter.NoteAdapter
 import com.example.notizen.viewmodel.NoteViewModel
@@ -18,7 +18,7 @@ class ListFragment : Fragment() {
     private val TAG = "ListFragment"
     private lateinit var binding: FragmentListBinding
     private val viewModel: NoteViewModel by viewModels {
-        NoteViewModel.Factory(NoteRepository(requireActivity().application))
+        NoteViewModel.Factory(LocalRepo(requireActivity().application))
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

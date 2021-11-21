@@ -2,13 +2,12 @@ package com.example.notizen.viewmodel
 
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import com.example.notizen.data.model.LoginBody
-import com.example.notizen.data.model.RegisterBody
-import com.example.notizen.data.repo.AuthRepository
+import com.example.notizen.model.data.body.LoginBody
+import com.example.notizen.model.data.body.RegisterBody
+import com.example.notizen.model.remote.RemoteRepo
 
 object AuthViewModel : ViewModel() {
-    suspend fun register(body: RegisterBody) = AuthRepository.register(body)
+    suspend fun register(body: RegisterBody) = RemoteRepo.register(body)
 
-    suspend fun login(body: LoginBody) = AuthRepository.login(body)
+    suspend fun login(body: LoginBody) = RemoteRepo.login(body)
 }

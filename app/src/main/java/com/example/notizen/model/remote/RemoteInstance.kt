@@ -5,7 +5,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object RetrofitInstance {
+object RemoteInstance {
 
     private const val BASE_URL = "https://knex-todo.herokuapp.com"
 
@@ -18,6 +18,6 @@ object RetrofitInstance {
         .addConverterFactory(MoshiConverterFactory.create(moshi))
         .build()
 
-    val authService: AuthService =
-        retrofit.create(AuthService::class.java)
+    val authService: RemoteService =
+        retrofit.create(RemoteService::class.java)
 }

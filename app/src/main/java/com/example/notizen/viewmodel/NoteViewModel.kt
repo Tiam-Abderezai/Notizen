@@ -1,14 +1,14 @@
 package com.example.notizen.viewmodel
 
 import androidx.lifecycle.*
-import com.example.notizen.data.repo.NoteRepository
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.local.LocalRepo
+import com.example.notizen.model.data.Note
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 
 class NoteViewModel(
-    private val noteRepo: NoteRepository
+    private val noteRepo: LocalRepo
 ) : ViewModel()  {
 
         val notes = noteRepo.readAllData().asLiveData(viewModelScope.coroutineContext + Dispatchers.Default)
@@ -36,7 +36,7 @@ class NoteViewModel(
         }
     }
     class Factory(
-        private val noteRepo: NoteRepository
+        private val noteRepo: LocalRepo
     ) : ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(NoteViewModel::class.java)) {

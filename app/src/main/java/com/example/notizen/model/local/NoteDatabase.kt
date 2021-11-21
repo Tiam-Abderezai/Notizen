@@ -1,10 +1,10 @@
-package com.example.notizen.data
+package com.example.notizen.model
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.notizen.data.model.Note
+import com.example.notizen.model.data.Note
 //import com.example.notizen.utils.Converters
 
 @Database(entities = [Note::class], version = 1, exportSchema = false)

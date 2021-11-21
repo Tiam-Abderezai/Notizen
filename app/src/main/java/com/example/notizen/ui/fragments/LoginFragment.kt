@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
-import com.example.notizen.data.local.DataStore
-import com.example.notizen.data.model.LoginBody
+import com.example.notizen.model.local.DataStore
+import com.example.notizen.model.data.body.LoginBody
 import com.example.notizen.databinding.FragmentLoginBinding
 import com.example.notizen.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch

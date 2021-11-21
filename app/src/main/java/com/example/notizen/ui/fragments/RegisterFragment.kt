@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.notizen.R
-import com.example.notizen.data.local.DataStore
-import com.example.notizen.data.model.RegisterBody
+import com.example.notizen.model.local.DataStore
+import com.example.notizen.model.data.body.RegisterBody
 import com.example.notizen.databinding.FragmentRegisterBinding
 import com.example.notizen.viewmodel.AuthViewModel
 import kotlinx.coroutines.launch
@@ -29,11 +29,13 @@ class RegisterFragment : Fragment() {
         binding.apply {
             btnRegister.setOnClickListener {
                 lifecycleScope.launch{
-                    AuthViewModel.register(RegisterBody(
+                    AuthViewModel.register(
+                        RegisterBody(
                         etUsername.text.toString(),
                         etEmail.text.toString(),
                         etPassword.text.toString()
-                    )).apply {
+                    )
+                    ).apply {
                         context?.let { DataStore(it).setToken(token) }
                         Log.d(TAG, "onCreateView: token:$token message:$message")
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
