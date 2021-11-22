@@ -29,6 +29,8 @@ class DetailFragment : Fragment() {
         binding = FragmentDetailBinding.inflate(inflater, container, false)
 
         binding.apply {
+            chkCompleted.isChecked = args.note.completed
+            Log.d(TAG, "onCreateView: ${args.note.completed}")
             tvTitle.text = args.note.title
             tvDescription.text = args.note.description
             btnDelete.setOnClickListener {

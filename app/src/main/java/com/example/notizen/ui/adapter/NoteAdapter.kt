@@ -31,18 +31,24 @@ class NoteAdapter(
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val item = notes[position]
-        Log.d(TAG, "onBindViewHolder: $item")
-        holder.itemView.id = position
-        holder.itemView.chk_completed.isChecked = true
-        holder.itemView.tv_title.text = item.title
-        holder.itemView.tv_description.text = item.description
-        holder.itemView.tv_createdAt.text = getDate(item.createdAt)
-        holder.itemView.tv_updatedAt.text = getDate(item.updatedAt)
-        holder.itemView.setOnClickListener {
-            val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
-            holder.itemView.findNavController().navigate(action)
+        var item = notes[position]
+        holder.itemView.apply {
+            id = position
+
+            chk_completed.setOnCheckedChangeListener { buttonView, isChecked ->
+                item.completed = isChecked
+            }
+            chk_completed.isChecked = item.completed
+            tv_title.text = item.title
+            tv_description.text = item.description
+            tv_createdAt.text = getDate(item.createdAt)
+            tv_updatedAt.text = getDate(item.updatedAt)
+            setOnClickListener {
+                val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
+                holder.itemView.findNavController().navigate(action)
+            }
         }
+        Log.d(TAG, "onBindViewHolder: $item")
 
     }
 
