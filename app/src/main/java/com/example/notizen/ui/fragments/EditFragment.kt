@@ -33,7 +33,7 @@ class EditFragment : Fragment() {
             btnSave.setOnClickListener {
                 viewModel.editNote(Note(args.note.id, etTitle.text.toString(),
                     etDescription.text.toString(),
-                    false,
+                    args.note.completed,
                     args.note.createdAt,
                     System.currentTimeMillis()
                 ))
