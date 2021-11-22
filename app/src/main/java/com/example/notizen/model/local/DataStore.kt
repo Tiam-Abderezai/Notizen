@@ -13,11 +13,13 @@ class DataStore(val context: Context) {
     companion object {
         val Context.dataStore_token: DataStore<Preferences> by preferencesDataStore(name = "store_token")
         val Context.dataStore_username: DataStore<Preferences> by preferencesDataStore(name = "store_username")
+        val Context.dataStore_email: DataStore<Preferences> by preferencesDataStore(name = "store_email")
         val Context.dataStore_password: DataStore<Preferences> by preferencesDataStore(name = "store_password")
 
     }
     private val token = stringPreferencesKey("key_token")
     private val username = stringPreferencesKey("key_username")
+    private val email = stringPreferencesKey("key_password")
     private val password = stringPreferencesKey("key_password")
 
         // TOKEN
@@ -46,16 +48,29 @@ class DataStore(val context: Context) {
         }.first()
     }
 
-    // TOKEN
-    suspend fun setPassword(token: String) {
+    // EMAIL
+    suspend fun setEmail(email: String) {
+        context.dataStore_email.edit { preferences ->
+            preferences[this.email] = email
+        }
+    }
+
+    suspend fun getEmail(): String? {
+        return context.dataStore_email.data.map {
+            it[email]
+        }.first()
+    }
+
+    // PASSWORD
+    suspend fun setPassword(password: String) {
         context.dataStore_password.edit { preferences ->
-            preferences[this.token] = token
+            preferences[this.password] = password
         }
     }
 
     suspend fun getPassword(): String? {
         return context.dataStore_password.data.map {
-            it[token]
+            it[password]
         }.first()
     }
 

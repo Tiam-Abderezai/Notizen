@@ -25,23 +25,27 @@ class RegisterFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
-
         binding.apply {
             btnRegister.setOnClickListener {
-                lifecycleScope.launch{
+                lifecycleScope.launch {
                     RemoteViewModel.register(
                         RegisterBody(
-                        etUsername.text.toString(),
-                        etEmail.text.toString(),
-                        etPassword.text.toString()
-                    )
+                            etUsername.text.toString(),
+                            etEmail.text.toString(),
+                            etPassword.text.toString()
+                        )
                     ).apply {
-                        context?.let { DataStore(it).setToken(token) }
+                        context?.let {
+                            DataStore(it).setToken(token)
+                            DataStore(it).setUsername(etUsername.text.toString())
+                            DataStore(it).setEmail(etEmail.text.toString())
+                            DataStore(it).setPassword(etPassword.text.toString())
+                        }
                         Log.d(TAG, "onCreateView: token:$token message:$message")
                         findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                     }
                 }
-        }
+            }
         }
         Log.d(TAG, "onCreateView: ")
         return binding.root

@@ -84,11 +84,11 @@
         android:name="com.example.notizen.ui.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile">
-        <!--        <action-->
-        <!--            android:id="@+id/action_editFragment_to_listFragment"-->
-        <!--            app:destination="@id/listFragment" />-->
-        <!--        <argument-->
-        <!--            android:name="currentRecipe"-->
-        <!--            app:argType="com.example.notizen.data.model.Recipe" />-->
+<!--                <action-->
+<!--                    android:id="@+id/action_editFragment_to_listFragment"-->
+<!--                    app:destination="@id/listFragment" />-->
+<!--                <argument-->
+<!--                    android:name="userData"-->
+<!--                    app:argType="com.example.notizen.model.data.body.RegisterBody" />-->
     </fragment>
 </navigation>

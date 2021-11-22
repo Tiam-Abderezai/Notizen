@@ -45,10 +45,10 @@ class LoginFragment : Fragment() {
                             )
                         ).apply {
                             Log.d(TAG, "onCreateView: token: $token message: $message")
-                            context?.let { DataStore(it).setToken(token) }
-                            context?.let { DataStore(it).setUsername(etUsername.text.toString()) }
-                            context?.let { DataStore(it).setPassword(etPassword.text.toString()) }
-                            findNavController().navigate(R.id.action_loginFragment_to_listFragment)
+                            context?.let { DataStore(it).setToken(token)
+                                DataStore(it).setUsername(etUsername.text.toString())
+                                DataStore(it).setPassword(etPassword.text.toString())
+                            }
                         }
                     } catch (ex: Exception){
                         Log.d(TAG, "onCreateView: $ex")
