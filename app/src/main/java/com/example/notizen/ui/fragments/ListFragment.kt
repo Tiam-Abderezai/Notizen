@@ -43,7 +43,6 @@ class ListFragment : Fragment() {
                 token = DataStore(requireActivity()).getToken().toString()
                 Log.d(TAG, "tokenCheck:${DataStore(requireContext()).getToken()}")
             }
-//            findNavController().navigate(R.id.action_loginFragment_to_listFragment)
         }
         binding = FragmentListBinding.inflate(inflater, container, false)
         binding.apply {
@@ -73,7 +72,7 @@ class ListFragment : Fragment() {
                 RemoteViewModel.getAllNotes(
                     auth
                 ).apply {
-                    Log.d(TAG, "onCreateView: all Notes size: ${this.size}")
+                    Log.d(TAG, "onCreateView: all Notes size: ${this[1].id}")
                 }
             } catch (ex: Exception) {
                 Log.d(TAG, "onCreateView: $ex")

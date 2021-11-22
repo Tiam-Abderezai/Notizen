@@ -52,21 +52,19 @@ class ComposeFragment : Fragment() {
             btnSave.setOnClickListener {
                 lifecycleScope.launch {
                     try {
-//                        Log.d(TAG, "onCreateView: Token:$token")
-//                        val auth = HashMap<String, String>()
-//                        val note = HashMap<String, String>()
-//                        auth["Authorization"] = token
-//                        note["id"] = "0"
-//                        note["title"] = etTitle.text.toString()
-//                        note["description"] = etDescription.text.toString()
-//                        note["completed"] = "false"
-//                        note["userId"] = "0"
-//                        note["date"] = "1637165861"
-//                        note["updatedAt"] = "1637168401"
-//                        RemoteViewModel.addNote(
-//                            note,
-//                            auth
-//                        )
+                        Log.d(TAG, "onCreateView: Token:$token")
+                        val auth = HashMap<String, String>()
+                        val note = HashMap<String, String>()
+                        auth["Authorization"] = token
+                        note["title"] = etTitle.text.toString()
+                        note["description"] = etDescription.text.toString()
+                        note["completed"] = "false"
+                        note["date"] = System.currentTimeMillis().toString()
+                        note["updatedAt"] = System.currentTimeMillis().toString()
+                        RemoteViewModel.addNote(
+                            note,
+                            auth
+                        )
                         RemoteViewModel.login(
                             LoginBody(
                                 username,
@@ -79,12 +77,11 @@ class ComposeFragment : Fragment() {
                                     etTitle.text.toString(),
                                     etDescription.text.toString(),
                                     false,
-                                    System.currentTimeMillis(),
-                                    System.currentTimeMillis()
+                                    System.currentTimeMillis().toString(),
+                                    System.currentTimeMillis().toString()
                                 )
                             )
                             findNavController().navigate(R.id.action_composeFragment_to_listFragment)
-//                            Log.d(TAG, "onCreateView: Title: $title Description: $description")
                         }
                     } catch (ex: Exception) {
                         Log.d(TAG, "onCreateView: $ex")

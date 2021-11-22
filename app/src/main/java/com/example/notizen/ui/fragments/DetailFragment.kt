@@ -33,6 +33,8 @@ class DetailFragment : Fragment() {
             Log.d(TAG, "onCreateView: ${args.note.completed}")
             tvTitle.text = args.note.title
             tvDescription.text = args.note.description
+            tvCreatedAt.text = args.note.createdAt
+            tvUpdatedAt.text = args.note.updatedAt
             btnDelete.setOnClickListener {
                 viewModel.deleteNote(args.note)
                 findNavController().navigate(R.id.listFragment)

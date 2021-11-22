@@ -49,6 +49,7 @@ class LoginFragment : Fragment() {
                                 DataStore(it).setUsername(etUsername.text.toString())
                                 DataStore(it).setPassword(etPassword.text.toString())
                             }
+                            findNavController().navigate(R.id.action_loginFragment_to_listFragment)
                         }
                     } catch (ex: Exception){
                         Log.d(TAG, "onCreateView: $ex")

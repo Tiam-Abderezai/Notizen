@@ -21,6 +21,7 @@ class EditFragment : Fragment() {
     private val viewModel: LocalViewModel by viewModels {
         LocalViewModel.Factory(LocalRepo(requireActivity().application))
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,13 +31,19 @@ class EditFragment : Fragment() {
         binding.apply {
             etTitle.setText(args.note.title)
             etDescription.setText(args.note.description)
+            tvCreatedAt.text = args.note.createdAt
+            tvUpdatedAt.text = args.note.updatedAt
             btnSave.setOnClickListener {
-                viewModel.editNote(Note(args.note.id, etTitle.text.toString(),
-                    etDescription.text.toString(),
-                    args.note.completed,
-                    args.note.createdAt,
-                    System.currentTimeMillis()
-                ))
+                viewModel.editNote(
+                    Note(
+                        args.note.id,
+                        etTitle.text.toString(),
+                        etDescription.text.toString(),
+                        args.note.completed,
+                        tvCreatedAt.text.toString(),
+                        tvUpdatedAt.text.toString()
+                    )
+                )
                 findNavController().navigate(R.id.action_editFragment_to_listFragment)
             }
         }

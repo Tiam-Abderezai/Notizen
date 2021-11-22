@@ -40,13 +40,15 @@ class NoteAdapter(
 
             chk_completed.setOnCheckedChangeListener { buttonView, isChecked ->
                 item.completed = isChecked
+                item.createdAt = getDate(item.createdAt).toString()
+                item.updatedAt = getDate(item.updatedAt).toString()
 
             }
             chk_completed.isChecked = item.completed
             tv_title.text = item.title
             tv_description.text = item.description
-            tv_createdAt.text = "Created: ${getDate(item.createdAt)}"
-            tv_updatedAt.text = "Updated: ${getDate(item.updatedAt)}"
+            tv_createdAt.text = "Created: ${item.createdAt}"
+            tv_updatedAt.text = "Updated: ${item.updatedAt}"
             setOnClickListener {
                 val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
                 holder.itemView.findNavController().navigate(action)
@@ -56,10 +58,10 @@ class NoteAdapter(
 
     }
 
-    private fun getDate(date: Long): String? {
+    private fun getDate(date: String): String? {
        return try {
            val sdf = SimpleDateFormat("MM/dd/yyyy")
-           val netDate = Date(date)
+           val netDate = Date(date.toLong())
            Log.d(TAG, "getDate: $netDate")
            sdf.format(netDate)
        } catch (ex: Exception) {

@@ -31,7 +31,7 @@ object RemoteRepo {
         return RemoteInstance.crudService.getAllNotes(auth)
     }
     suspend fun addNote(note: Map<String, String>, auth: Map<String,String>): NoteResponse {
-        Log.d(TAG, "addNote: ")
+        Log.d(TAG, "addNote: ${RemoteInstance.crudService.addNote(note, auth).id}")
         return RemoteInstance.crudService.addNote(note, auth)
     }
     suspend fun deleteNote(id: String, auth: Map<String,String>): NoteResponse {
