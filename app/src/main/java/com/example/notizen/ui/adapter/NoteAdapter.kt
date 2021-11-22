@@ -10,6 +10,8 @@ import com.example.notizen.R
 import com.example.notizen.model.data.Note
 import com.example.notizen.ui.fragments.ListFragmentDirections
 import kotlinx.android.synthetic.main.note_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 class NoteAdapter(
     private val notes: List<Note>
@@ -35,12 +37,24 @@ class NoteAdapter(
         holder.itemView.chk_completed.isChecked = true
         holder.itemView.tv_title.text = item.title
         holder.itemView.tv_description.text = item.description
-        holder.itemView.tv_createdAt.text = item.createdAt.toString()
-        holder.itemView.tv_updatedAt.text = item.updatedAt.toString()
+        holder.itemView.tv_createdAt.text = getDate(item.createdAt)
+        holder.itemView.tv_updatedAt.text = getDate(item.updatedAt)
         holder.itemView.setOnClickListener {
             val action = ListFragmentDirections.actionListFragmentToDetailFragment(item)
             holder.itemView.findNavController().navigate(action)
         }
 
+    }
+
+    private fun getDate(date: Long): String? {
+       return try {
+           val sdf = SimpleDateFormat("MM/dd/yyyy")
+           val netDate = Date(date)
+           Log.d(TAG, "getDate: $netDate")
+           sdf.format(netDate)
+       } catch (ex: Exception) {
+           Log.d(TAG, "getDate: ${ex.message}")
+           ex.message
+       }
     }
 }

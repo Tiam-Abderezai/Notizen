@@ -83,6 +83,7 @@ class ComposeFragment : Fragment() {
                                     System.currentTimeMillis()
                                 )
                             )
+
                             findNavController().navigate(R.id.action_composeFragment_to_listFragment)
 //                            Log.d(TAG, "onCreateView: Title: $title Description: $description")
                         }
